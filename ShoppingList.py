@@ -37,5 +37,4 @@ while True:
     elif new_item.lower() == "list":
         show_list()
         continue  
-    add_to_list(new_item.title())
-        
+    add_to_list(new_item.title())     
