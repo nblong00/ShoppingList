@@ -1,9 +1,14 @@
 
 shopping_list = []
 
+def welcome(name):
+    print()
+    print("Hello {},".format(name))
+    print("Welcome to the shopping list simulator!")
+    print()
 
 def show_help():
-    print("What should we pick up at the store?")
+    print("What do you need to pick up at the store?")
     print("""
 Enter 'DONE' to stop adding items. 
 Enter 'HELP' for this help.
@@ -25,7 +30,10 @@ def show_list():
         print("{}. {}".format(item_number, item))
         item_number += 1
     
-    
+
+human_name = input("Enter your name: ").title()
+
+welcome(human_name)
 show_help()
 while True:
     new_item = input("> ")
