@@ -2,11 +2,13 @@
 shopping_list = []
 item_prices = []
 
+
 def welcome(name):
     print()
     print("Hello {},".format(name))
     print("Welcome to the shopping list simulator!")
     print()
+
 
 def show_help():
     print("What do you need to pick up at the store?")
@@ -18,11 +20,17 @@ Enter 'LIST' to list current items added.
     
     
 def add_to_list(item):
-    item_cost = float(input("How much does this item cost?\n> "))
-    item_prices.append(item_cost)
+    
     shopping_list.append(item) 
-    print("{} has been added to the list".format(item))
-    print("Shopping list currently contains {} item(s).".format(len(shopping_list)))
+    print(("* If the item was added by mistake or incorrectly, enter DELETE, otherwise, provide the item's price"))
+    user_response = input("> ")
+    if user_response.title() == "Delete":
+        shopping_list.pop()
+    else: 
+        item_cost = float(user_response)
+        item_prices.append(item_cost)
+        print("{} has been added to the list".format(item))
+        print("Shopping list currently contains {} item(s).".format(len(shopping_list)))
     
     
 def show_list():
@@ -36,10 +44,15 @@ def show_list():
     
 
 human_name = input("Enter your name: ").title()
+loop_passes = 0
 
 welcome(human_name)
 show_help()
 while True:
+    if loop_passes < 1:
+        loop_passes += 1
+    else: 
+        show_help()
     new_item = input("> ")
     if new_item.upper() == "DONE":
         break
@@ -48,5 +61,5 @@ while True:
         continue
     elif new_item.lower() == "list":
         show_list()
-        continue  
+        continue
     add_to_list(new_item.title())     
