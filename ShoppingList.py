@@ -1,5 +1,6 @@
 
 shopping_list = []
+item_prices = []
 
 def welcome(name):
     print()
@@ -17,6 +18,8 @@ Enter 'LIST' to list current items added.
     
     
 def add_to_list(item):
+    item_cost = float(input("How much does this item cost?\n> "))
+    item_prices.append(item_cost)
     shopping_list.append(item) 
     print("{} has been added to the list".format(item))
     print("Shopping list currently contains {} item(s).".format(len(shopping_list)))
