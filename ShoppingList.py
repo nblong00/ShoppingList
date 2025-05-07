@@ -30,7 +30,8 @@ def show_list():
     item_number = 1
     print("Here is your current list:")
     for item in shopping_list:
-        print("{}. {}".format(item_number, item))
+        item_index = shopping_list.index(item)
+        print("{}. {} - ${}".format(item_number, item, item_prices[item_index]))
         item_number += 1
     
 
