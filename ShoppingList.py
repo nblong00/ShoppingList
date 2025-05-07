@@ -10,13 +10,20 @@ def welcome(name):
     print()
 
 
-def show_help():
-    print("What do you need to pick up at the store?")
-    print("""
-Enter 'DONE' to stop adding items. 
-Enter 'HELP' for this help.
-Enter 'LIST' to list current items added.
-""")
+def show_help(loop_runs):
+    if loop_runs < 1:
+        print("What do you need to pick up at the store?")
+        print("""
+    Enter 'DONE' to stop adding items. 
+    Enter 'HELP' for this help.
+    Enter 'LIST' to list current items added.
+    """)
+    else: 
+        print("""
+    Enter 'DONE' to stop adding items. 
+    Enter 'HELP' for this help.
+    Enter 'LIST' to list current items added.
+    """)
     
     
 def add_to_list(item):
@@ -47,17 +54,17 @@ human_name = input("Enter your name: ").title()
 loop_passes = 0
 
 welcome(human_name)
-show_help()
+show_help(loop_passes)
 while True:
     if loop_passes < 1:
         loop_passes += 1
     else: 
-        show_help()
+        show_help(loop_passes)
     new_item = input("> ")
     if new_item.upper() == "DONE":
         break
     elif new_item.lower() == "help":
-        show_help()
+        show_help(loop_passes)
         continue
     elif new_item.lower() == "list":
         show_list()
