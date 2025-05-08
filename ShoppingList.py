@@ -32,7 +32,7 @@ def add_to_list(item):
     print(("* If the item was added by mistake or incorrectly, enter DELETE, otherwise, provide the item's price"))
     user_response = input("> ")
     if user_response.title() == "Delete":
-        shopping_list.pop()
+        del(shopping_list[shopping_list.index(item)])
     else: 
         item_cost = float(user_response)
         item_prices.append(item_cost)
