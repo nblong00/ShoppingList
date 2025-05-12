@@ -41,8 +41,8 @@ def add_to_list(item):
     else: 
         item_cost = float(user_response)
         item_prices.append(item_cost)
-        print("{} has been added to the list".format(item))
-        print("Shopping list currently contains {} item(s).".format(len(shopping_list)))
+        print(f"{item} has been added to the list")
+        print(f"Shopping list currently contains {len(shopping_list)} item(s).")
     
     
 def show_list():
@@ -50,7 +50,7 @@ def show_list():
     print("Here is your current list:")
     for index, item in enumerate(shopping_list, 1):
         item_index = shopping_list.index(item)
-        print("{}. {} - ${}".format(index, item, item_prices[item_index]))
+        print(f"{index}. {item} - ${item_prices[item_index]}")
     
 
 human_name = input("Enter your name: ").title()
