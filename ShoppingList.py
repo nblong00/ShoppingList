@@ -1,11 +1,16 @@
+import datetime
 
 shopping_list = []
 item_prices = []
 
 
 def welcome(name):
+
+    dt = datetime.datetime.now()
+
     print()
     print("Hello {},".format(name))
+    print(f"Today's date is: {dt.month}/{dt.day}/{dt.year}")
     print("Welcome to the shopping list simulator!")
     print()
 
