@@ -10,7 +10,7 @@ def welcome(name):
 
     print()
     print("Hello {},".format(name))
-    print(f"Today's date is: {dt.month}/{dt.day}/{dt.year}")
+    print(f"Today's date is: {dt.strftime("%B %d, %Y")}")
     print("Welcome to the shopping list simulator!")
     print()
 
