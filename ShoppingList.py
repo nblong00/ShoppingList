@@ -52,24 +52,27 @@ def show_list():
         item_index = shopping_list.index(item)
         print(f"{index}. {item} - ${item_prices[item_index]}")
     
+def main():
 
-human_name = input("Enter your name: ").title()
-loop_passes = 0
+    human_name = input("Enter your name: ").title()
+    loop_passes = 0
 
-welcome(human_name)
-show_help(loop_passes)
-while True:
-    if loop_passes < 1:
-        loop_passes += 1
-    else: 
-        show_help(loop_passes)
-    new_item = input("> ")
-    if new_item.upper() == "DONE":
-        break
-    elif new_item.lower() == "help":
-        show_help(loop_passes)
-        continue
-    elif new_item.lower() == "list":
-        show_list()
-        continue
-    add_to_list(new_item.title())     
+    welcome(human_name)
+    show_help(loop_passes)
+    while True:
+        if loop_passes < 1:
+            loop_passes += 1
+        else: 
+            show_help(loop_passes)
+        new_item = input("> ")
+        if new_item.upper() == "DONE":
+            break
+        elif new_item.lower() == "help":
+            show_help(loop_passes)
+            continue
+        elif new_item.lower() == "list":
+            show_list()
+            continue
+        add_to_list(new_item.title())  
+
+main()   
