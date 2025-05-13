@@ -25,6 +25,8 @@ def show_help(loop_runs):
     """)
     else: 
         print("""
+    Help Menu:         
+
     Enter 'DONE' to stop adding items. 
     Enter 'HELP' for this help.
     Enter 'LIST' to list current items added.
@@ -62,8 +64,6 @@ def main():
     while True:
         if loop_passes < 1:
             loop_passes += 1
-        else: 
-            show_help(loop_passes)
         new_item = input("> ")
         if new_item.upper() == "DONE":
             break
