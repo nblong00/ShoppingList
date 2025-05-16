@@ -13,7 +13,6 @@ def welcome(name):
     print(f"Today's date is: {dt.strftime("%B %d, %Y")}")
     print("Welcome to the shopping list simulator!")
     print()
-    print(shopping_list)
 
 def show_help(loop_runs):
     if loop_runs < 1:
@@ -31,7 +30,16 @@ def show_help(loop_runs):
     Enter 'HELP' for this help.
     Enter 'LIST' to list current items added.
     """)
-    
+
+def load_data():
+
+    with open('data.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            shopping_list.append({
+                'item': row['item'],
+                'cost': row['cost'],
+            })    
     
 def add_to_list(item):
     
@@ -43,26 +51,18 @@ def add_to_list(item):
         item_cost = float(user_response)
         with open('data.csv', 'a+', newline='') as csvfile:
             lastchar = csvfile.read(1)
-        # Add newline at the end if necessary
             if lastchar != '\n':
                 csvfile.write('\n')
             writer = csv.writer(csvfile, delimiter=',', lineterminator='')
             writer.writerow([item, item_cost])
 
-            load_data()
+            shopping_list.append({
+                'item': item,
+                'cost': item_cost,
+            })    
+
             print(f"{item} has been added to the list")
             print(f"Shopping list currently contains {len(shopping_list)} item(s).")
-    
-
-def load_data():
-
-    with open('data.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            shopping_list.append({
-                'item': row['item'],
-                'cost': row['cost'],
-            })
 
 # def show_list():
     
@@ -78,6 +78,7 @@ def main():
 
     welcome(human_name)
     show_help(loop_passes)
+    load_data()
     while True:
         if loop_passes < 1:
             loop_passes += 1
