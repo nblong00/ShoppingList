@@ -6,14 +6,6 @@ shopping_list = []
 
 def welcome(name):
 
-    with open('data.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            shopping_list.append({
-                'item': row['item'],
-                'cost': row['cost'],
-            })
-
     dt = datetime.datetime.now()
 
     print()
@@ -43,29 +35,41 @@ def show_help(loop_runs):
     
 def add_to_list(item):
     
-    shopping_list.append(item) 
     print(("* If the item was added by mistake or incorrectly, enter DELETE, otherwise, provide the item's price"))
     user_response = input("> ")
     if user_response.title() == "Delete":
-        del(shopping_list[shopping_list.index(item)])
+        pass
     else: 
         item_cost = float(user_response)
-        item_prices.append(item_cost)
-        print(f"{item} has been added to the list")
-        print(f"Shopping list currently contains {len(shopping_list)} item(s).")
-    
-    
-def show_list():
-    
-    print("Here is your current list:")
-    for index, item in enumerate(shopping_list, 1):
-        item_index = shopping_list.index(item)
-        print(f"{index}. {item} - ${item_prices[item_index]}")
+        with open('data.csv', 'a+', newline='') as csvfile:
+            lastchar = csvfile.read(1)
+        # Add newline at the end if necessary
+            if lastchar != '\n':
+                csvfile.write('\n')
+            writer = csv.writer(csvfile, delimiter=',', lineterminator='')
+            writer.writerow([item, item_cost])
 
-def save_list():
-    with open('data.csv', 'a', newline='') as csvfile:
-        writer = csv.writer(csvfile, delimiter=',')
-        writer.writerow([shopping_list, item_prices])
+            load_data()
+            print(f"{item} has been added to the list")
+            print(f"Shopping list currently contains {len(shopping_list)} item(s).")
+    
+
+def load_data():
+
+    with open('data.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            shopping_list.append({
+                'item': row['item'],
+                'cost': row['cost'],
+            })
+
+# def show_list():
+    
+#     print("Here is your current list:")
+#     for index, item in enumerate(shopping_list, 1):
+#         item_index = shopping_list.index(item)
+#         print(f"{index}. {item} - ${item_prices[item_index]}")
     
 def main():
 
@@ -79,13 +83,12 @@ def main():
             loop_passes += 1
         new_item = input("> ")
         if new_item.upper() == "DONE":
-            save_list()
             break
         elif new_item.lower() == "help":
             show_help(loop_passes)
             continue
         elif new_item.lower() == "list":
-            show_list()
+            #show_list()
             continue
         add_to_list(new_item.title())  
 
