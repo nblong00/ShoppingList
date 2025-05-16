@@ -64,12 +64,13 @@ def add_to_list(item):
             print(f"{item} has been added to the list")
             print(f"Shopping list currently contains {len(shopping_list)} item(s).")
 
-# def show_list():
+def show_list():
     
-#     print("Here is your current list:")
-#     for index, item in enumerate(shopping_list, 1):
-#         item_index = shopping_list.index(item)
-#         print(f"{index}. {item} - ${item_prices[item_index]}")
+    print()
+    print("Here is your current list:\n")
+    for index, item in enumerate(shopping_list, 1):
+        print(f"{index}. {item['item']} - ${item['cost']}")
+    print()
     
 def main():
 
@@ -89,7 +90,7 @@ def main():
             show_help(loop_passes)
             continue
         elif new_item.lower() == "list":
-            #show_list()
+            show_list()
             continue
         add_to_list(new_item.title())  
 
