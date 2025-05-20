@@ -74,12 +74,16 @@ def del_row():
     shopping_list[:] = [entry for entry in shopping_list if entry['item'] != del_item]
 
     if len(shopping_list) < initial_length:
-        with open('data.csv', 'w', newline='') as csvfile:
+        with open('data.csv', 'w+', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', lineterminator='')
             writer.writerow(['item', 'cost'])  
             for entry in shopping_list:
+                lastchar = csvfile.read(1)
+                if lastchar != '\n':
+                    csvfile.write('\n')
                 writer.writerow([entry['item'], entry['cost']])
         print(f"{del_item} has been removed from the list.")
+        show_list()
     else:
         print(f"{del_item} not found in the list.")
         print("Use the LIST command to see items currently in list.")
