@@ -1,13 +1,12 @@
 import datetime
 import csv
+import utils
 
 shopping_list = []
 
 
 def welcome(name):
-
     dt = datetime.datetime.now()
-
     print()
     print("Hello {},".format(name))
     print(f"Today's date is: {dt.strftime("%B %d, %Y")}")
@@ -50,21 +49,12 @@ def add_to_list(item):
     if user_response.title() == "Delete":
         pass
     else: 
+        global shopping_list
         item_cost = float(user_response)
-        with open('data.csv', 'a+', newline='') as csvfile:
-            lastchar = csvfile.read(1)
-            if lastchar != '\n':
-                csvfile.write('\n')
-            writer = csv.writer(csvfile, delimiter=',', lineterminator='')
-            writer.writerow([item, item_cost])
+        shopping_list = utils.write_item(item, item_cost, shopping_list) 
 
-            shopping_list.append({
-                'item': item,
-                'cost': item_cost,
-            })    
-
-            print(f"{item} has been added to the list")
-            print(f"Shopping list currently contains {len(shopping_list)} item(s).")
+        print(f"{item} has been added to the list")
+        print(f"Shopping list currently contains {len(shopping_list)} item(s).")
 
 def del_row():
     global shopping_list
@@ -78,9 +68,7 @@ def del_row():
             writer = csv.writer(csvfile, delimiter=',', lineterminator='')
             writer.writerow(['item', 'cost'])  
             for entry in shopping_list:
-                lastchar = csvfile.read(1)
-                if lastchar != '\n':
-                    csvfile.write('\n')
+                utils.csv_new_line(csvfile)
                 writer.writerow([entry['item'], entry['cost']])
         print(f"{del_item} has been removed from the list.")
         show_list()
