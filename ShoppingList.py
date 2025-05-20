@@ -68,7 +68,7 @@ def add_to_list(item):
 
 def del_row():
     global shopping_list
-    del_item = input("Enter name of item to delete:\n> ")
+    del_item = input("Enter name of item to delete:\n> ").title()
 
     initial_length = len(shopping_list)
     shopping_list[:] = [entry for entry in shopping_list if entry['item'] != del_item]
