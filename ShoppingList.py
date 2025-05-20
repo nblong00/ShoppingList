@@ -21,6 +21,7 @@ def show_help(loop_runs):
     Enter 'DONE' to stop adding items. 
     Enter 'HELP' for this help.
     Enter 'LIST' to list current items added.
+    Enter 'DELETE' to remove item from list.
     """)
     else: 
         print("""
@@ -29,6 +30,7 @@ def show_help(loop_runs):
     Enter 'DONE' to stop adding items. 
     Enter 'HELP' for this help.
     Enter 'LIST' to list current items added.
+    Enter 'DELETE' to remove item from list.
     """)
 
 def load_data():
@@ -64,6 +66,24 @@ def add_to_list(item):
             print(f"{item} has been added to the list")
             print(f"Shopping list currently contains {len(shopping_list)} item(s).")
 
+def del_row():
+    global shopping_list
+    del_item = input("Enter name of item to delete:\n> ")
+
+    initial_length = len(shopping_list)
+    shopping_list[:] = [entry for entry in shopping_list if entry['item'] != del_item]
+
+    if len(shopping_list) < initial_length:
+        with open('data.csv', 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile, delimiter=',', lineterminator='')
+            writer.writerow(['item', 'cost'])  
+            for entry in shopping_list:
+                writer.writerow([entry['item'], entry['cost']])
+        print(f"{del_item} has been removed from the list.")
+    else:
+        print(f"{del_item} not found in the list.")
+        print("Use the LIST command to see items currently in list.")
+
 def show_list():
     
     print()
@@ -91,6 +111,9 @@ def main():
             continue
         elif new_item.lower() == "list":
             show_list()
+            continue
+        elif new_item.lower() == "delete":
+            del_row()
             continue
         add_to_list(new_item.title())  
 
