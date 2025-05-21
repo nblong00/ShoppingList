@@ -11,6 +11,9 @@ def write_item(item, item_cost, shopping_list):
         })
     return shopping_list
 
+def read_items():
+    pass
+
 def csv_new_line(csvfile):
     lastchar = csvfile.read(1)
     if lastchar != '\n':

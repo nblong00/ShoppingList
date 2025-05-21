@@ -73,6 +73,7 @@ def del_row(shopping_list):
         print(f"{del_item} not found in the list.")
         print("Use the LIST command to see items currently in list.")
 
+    
 def show_list(shopping_list):
     
     print()
@@ -80,6 +81,7 @@ def show_list(shopping_list):
     for index, item in enumerate(shopping_list, 1):
         print(f"{index}. {item['item']} - ${item['cost']}")
     print()
+
     
 def main():
     shopping_list = []
