@@ -4,30 +4,10 @@ import utils
 
 def welcome(name):
     dt = datetime.datetime.now()
-    print()
-    print("Hello {},".format(name))
+    print("\nHello {},".format(name))
     print(f"Today's date is: {dt.strftime("%B %d, %Y")}")
-    print("Welcome to the shopping list simulator!")
-    print()
-
-def show_help(loop_runs):
-    if loop_runs < 1:
-        print("What do you need to pick up at the store?")
-        print("""
-    Enter 'DONE' to stop adding items. 
-    Enter 'HELP' for this help.
-    Enter 'LIST' to list current items added.
-    Enter 'DELETE' to remove item from list.
-    """)
-    else: 
-        print("""
-    Help Menu:         
-
-    Enter 'DONE' to stop adding items. 
-    Enter 'HELP' for this help.
-    Enter 'LIST' to list current items added.
-    Enter 'DELETE' to remove item from list.
-    """)
+    print("Welcome to the shopping list simulator!\n")
+    print("What do you need to pick up at the store?")
 
 def load_data(shopping_list):
 
@@ -86,19 +66,17 @@ def show_list(shopping_list):
 def main():
     shopping_list = []
     human_name = input("Enter your name: ").title()
-    loop_passes = 0
 
     welcome(human_name)
-    show_help(loop_passes)
+    utils.show_help()
     shopping_list = load_data(shopping_list)
     while True:
-        if loop_passes < 1:
-            loop_passes += 1
         new_item = input("> ")
         if new_item.upper() == "DONE":
             break
         elif new_item.lower() == "help":
-            show_help(loop_passes)
+            print("\n    Help Menu:")
+            utils.show_help()
             continue
         elif new_item.lower() == "list":
             show_list(shopping_list)

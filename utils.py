@@ -19,3 +19,10 @@ def csv_new_line(csvfile):
     if lastchar != '\n':
         csvfile.write('\n')
 
+def show_help():
+    print("""
+    Enter 'DONE' to stop adding items. 
+    Enter 'HELP' for this help.
+    Enter 'LIST' to list current items added.
+    Enter 'DELETE' to remove item from list.
+    """)
