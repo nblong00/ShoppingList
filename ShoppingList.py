@@ -1,7 +1,9 @@
 import datetime
 import csv
 import utils
+import logging
 
+logging.basicConfig(filename="script.log", level=logging.DEBUG)
 
 def welcome(name):
     dt = datetime.datetime.now()
@@ -39,6 +41,7 @@ def del_row(shopping_list):
                 utils.csv_new_line(csvfile)
                 writer.writerow([entry['item'], entry['cost']])
         print(f"{del_item} has been removed from the list.")
+        logging.debug(f"deleted item: {del_item}")
         return shopping_list_altered
     else:
         print(f"{del_item} not found in the list.")
