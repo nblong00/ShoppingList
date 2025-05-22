@@ -9,19 +9,8 @@ def welcome(name):
     print("Welcome to the shopping list simulator!\n")
     print("What do you need to pick up at the store?")
 
-def load_data(shopping_list):
-
-    with open('data.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            shopping_list.append({
-                'item': row['item'],
-                'cost': row['cost'],
-            }) 
-    return shopping_list   
     
 def add_to_list(item, shopping_list):
-    
     print(("* If the item was added by mistake or incorrectly, enter DELETE, otherwise, provide the item's price"))
     user_response = input("> ")
     if user_response.title() == "Delete":
@@ -33,6 +22,7 @@ def add_to_list(item, shopping_list):
         print(f"{item} has been added to the list")
         print(f"Shopping list currently contains {len(shopping_list)} item(s).")
         return shopping_list_altered
+
 
 def del_row(shopping_list):
     del_item = input("Enter name of item to delete:\n> ").title()
@@ -54,8 +44,7 @@ def del_row(shopping_list):
         print("Use the LIST command to see items currently in list.")
 
     
-def show_list(shopping_list):
-    
+def show_list(shopping_list): 
     print()
     print("Here is your current list:\n")
     for index, item in enumerate(shopping_list, 1):
@@ -69,7 +58,7 @@ def main():
 
     welcome(human_name)
     utils.show_help()
-    shopping_list = load_data(shopping_list)
+    shopping_list = utils.load_data(shopping_list)
     while True:
         new_item = input("> ")
         if new_item.upper() == "DONE":
@@ -86,5 +75,6 @@ def main():
             show_list(shopping_list)
             continue
         shopping_list = add_to_list(new_item.title(), shopping_list)  
+
 
 main()   

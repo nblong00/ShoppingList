@@ -26,3 +26,14 @@ def show_help():
     Enter 'LIST' to list current items added.
     Enter 'DELETE' to remove item from list.
     """)
+
+def load_data(shopping_list):
+
+    with open('data.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            shopping_list.append({
+                'item': row['item'],
+                'cost': row['cost'],
+            }) 
+    return shopping_list   
