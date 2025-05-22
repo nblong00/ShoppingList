@@ -2,6 +2,7 @@ import datetime
 import csv
 import utils
 
+
 def welcome(name):
     dt = datetime.datetime.now()
     print("\nHello {},".format(name))
@@ -58,7 +59,7 @@ def main():
 
     welcome(human_name)
     utils.show_help()
-    shopping_list = utils.load_data(shopping_list)
+    shopping_list = utils.read_items(shopping_list)
     while True:
         new_item = input("> ")
         if new_item.upper() == "DONE":

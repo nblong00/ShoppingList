@@ -11,8 +11,15 @@ def write_item(item, item_cost, shopping_list):
         })
     return shopping_list
 
-def read_items():
-    pass
+def read_items(shopping_list):
+    with open('data.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            shopping_list.append({
+                'item': row['item'],
+                'cost': row['cost'],
+            }) 
+    return shopping_list
 
 def csv_new_line(csvfile):
     lastchar = csvfile.read(1)
@@ -26,14 +33,3 @@ def show_help():
     Enter 'LIST' to list current items added.
     Enter 'DELETE' to remove item from list.
     """)
-
-def load_data(shopping_list):
-
-    with open('data.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            shopping_list.append({
-                'item': row['item'],
-                'cost': row['cost'],
-            }) 
-    return shopping_list   
