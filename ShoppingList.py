@@ -29,7 +29,6 @@ def add_to_list(item, shopping_list):
 
 def del_row(shopping_list):
     del_item = input("Enter name of item to delete:\n> ").title()
-
     initial_length = len(shopping_list)
     shopping_list_altered = [entry for entry in shopping_list if entry['item'] != del_item]
 
@@ -42,10 +41,12 @@ def del_row(shopping_list):
                 writer.writerow([entry['item'], entry['cost']])
         print(f"{del_item} has been removed from the list.")
         logging.debug(f"deleted item: {del_item}")
+        show_list(shopping_list)
         return shopping_list_altered
     else:
         print(f"{del_item} not found in the list.")
         print("Use the LIST command to see items currently in list.")
+        return shopping_list
 
     
 def show_list(shopping_list): 
@@ -63,6 +64,7 @@ def main():
     welcome(human_name)
     utils.show_help()
     shopping_list = utils.read_items(shopping_list)
+
     while True:
         new_item = input("> ")
         if new_item.upper() == "DONE":
@@ -76,9 +78,9 @@ def main():
             continue
         elif new_item.lower() == "delete":
             shopping_list = del_row(shopping_list)
-            show_list(shopping_list)
             continue
-        shopping_list = add_to_list(new_item.title(), shopping_list)  
+        else:
+            shopping_list = add_to_list(new_item.title(), shopping_list)  
 
 
 main()   

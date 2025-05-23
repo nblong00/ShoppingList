@@ -1,5 +1,6 @@
 import csv
 
+
 def write_item(item, item_cost, shopping_list):
     with open('data.csv', 'a+', newline='') as csvfile:
         csv_new_line(csvfile)
@@ -10,6 +11,7 @@ def write_item(item, item_cost, shopping_list):
             'cost': item_cost,
         })
     return shopping_list
+
 
 def read_items(shopping_list):
     with open('data.csv', newline='') as csvfile:
@@ -25,6 +27,7 @@ def csv_new_line(csvfile):
     lastchar = csvfile.read(1)
     if lastchar != '\n':
         csvfile.write('\n')
+
 
 def show_help():
     print("""
