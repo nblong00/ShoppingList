@@ -41,7 +41,6 @@ def del_row(shopping_list):
                 writer.writerow([entry['item'], entry['cost']])
         print(f"{del_item} has been removed from the list.")
         logging.debug(f"deleted item: {del_item}")
-        show_list(shopping_list)
         return shopping_list_altered
     else:
         print(f"{del_item} not found in the list.")
