@@ -32,8 +32,8 @@ def csv_new_line(csvfile:complex) -> None:
 
 def show_help() -> str:
     print("""
-    Enter 'DONE' to stop adding items. 
-    Enter 'HELP' for this help.
-    Enter 'LIST' to list current items added.
-    Enter 'DELETE' to remove item from list.
+    \rEnter 'DONE' to stop adding items. 
+    \rEnter 'HELP' for this help.
+    \rEnter 'LIST' to list current items added.
+    \rEnter 'DELETE' to remove item from list.
     """)
