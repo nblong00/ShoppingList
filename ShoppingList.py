@@ -22,7 +22,6 @@ def add_to_list(item, shopping_list):
     else: 
         item_cost = float(user_response)
         shopping_list_altered = utils.write_item(item, item_cost, shopping_list) 
-
         print(f"{item} has been added to the list")
         print(f"Shopping list currently contains {len(shopping_list)} item(s).")
         return shopping_list_altered
@@ -67,7 +66,7 @@ def main():
         if new_item.upper() == "DONE":
             break
         elif new_item.lower() == "help":
-            print("\n    Help Menu:")
+            print("\nHelp Menu:")
             utils.show_help()
             continue
         elif new_item.lower() == "list":
